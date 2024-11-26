@@ -1,0 +1,116 @@
+﻿@model JK2247A5.Models.ShowWithInfoViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Model.Name</h2>
+<div class="p-3">
+    <hr />
+    <div class="row">
+        <div class="col-md-2 text-end fw-bold">
+            @Html.DisplayNameFor(model => model.Name)
+        </div>
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Name)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2 text-end fw-bold">
+            @Html.DisplayNameFor(model => model.Genre)
+        </div>
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Genre)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2 text-end fw-bold">
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </div>
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.ReleaseDate)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2 text-end fw-bold">
+            @Html.DisplayNameFor(model => model.ImageUrl)
+        </div>
+        <div class="col-md-10">
+            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+            {
+                <img src="@Model.ImageUrl" alt="Actor Image" style="max-height: 150px; max-width: 150px;" />
+            }
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2 text-end fw-bold">
+            @Html.DisplayNameFor(model => model.Coordinator)
+        </div>
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Coordinator)
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-md-2 text-end fw-bold">
+            Cast
+            <div>
+                <span class="badge rounded-pill bg-secondary">
+                    @Model.Actors.Count() actors
+                </span>
+            </div>
+        </div>
+        <div class="col-md-10">
+            @foreach (var actor in Model.Actors)
+            {
+                <div>@Html.DisplayFor(model => actor.Name)</div>
+            }
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-md-2 text-end fw-bold">
+            Episodes
+            <div>
+                <span class="badge rounded-pill bg-secondary">
+                    @Model.Episodes.Count() episodes
+                </span>
+            </div>
+        </div>
+        <div class="col-md-10">
+            @foreach (var episode in Model.Episodes)
+            {
+                <div>@Html.DisplayFor(model => episode.Name)</div>
+            }
+        </div>
+    </div>
+
+    @* If Premise is included, you can add it below in a similar format *@
+    @*<div class="row">
+            <div class="col-md-2 text-end fw-bold">
+                @Html.DisplayNameFor(model => model.Premise)
+            </div>
+            <div class="col-md-10">
+                <div class="panel panel-default panel-body">
+                    @Html.Raw(Model.Premise)
+                </div>
+            </div>
+        </div>*@
+</div>
+
+<p>
+    @using System.Security.Claims;
+    @if ((User as ClaimsPrincipal).HasClaim(ClaimTypes.Role, "Clerk"))
+    {
+        @Html.ActionLink("Add New Episodes", "AddEpisode", "Episodes", new { id = Model.Id })
+    }
+    | @Html.ActionLink("Back to List", "Index")
+</p>

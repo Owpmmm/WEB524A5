@@ -1,0 +1,119 @@
+﻿@model JK2247A5.Models.EpisodeWithShowNameViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Model.Name</h2>
+
+<div>
+    <hr />
+    <div class="row">
+        <div class="col-md-2 text-end fw-bold">
+            @Html.Label("Show Name")
+        </div>
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Show.Name)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2 text-end fw-bold">
+            @Html.DisplayNameFor(model => model.Name)
+        </div>
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Name)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2 text-end fw-bold">
+            @Html.DisplayNameFor(model => model.SeasonNumber)
+        </div>
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.SeasonNumber)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2 text-end fw-bold">
+            @Html.DisplayNameFor(model => model.EpisodeNumber)
+        </div>
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.EpisodeNumber)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2 text-end fw-bold">
+            @Html.DisplayNameFor(model => model.Genre)
+        </div>
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Genre)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2 text-end fw-bold">
+            @Html.DisplayNameFor(model => model.AirDate)
+        </div>
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.AirDate)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2 text-end fw-bold">
+            @Html.DisplayNameFor(model => model.ImageUrl)
+        </div>
+        <div class="col-md-10">
+            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+            {
+                <img src="@Model.ImageUrl" alt="Actor Image" style="max-height: 150px; max-width: 150px;" />
+            }
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2 text-end fw-bold">
+            @Html.DisplayNameFor(model => model.Clerk)
+        </div>
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Clerk)
+        </div>
+    </div>
+
+    @*@if (!string.IsNullOrEmpty(Model.Premise))
+    {
+        <hr />
+        <div class="row">
+            <div class="col-md-2 text-end fw-bold">
+                @Html.DisplayNameFor(model => model.Premise)
+            </div>
+            <div class="col-md-10">
+                <div class="panel panel-default panel-body">
+                    @Html.Raw(Model.Premise)
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.VideoContentType))
+    {
+        <div class="row mb-3">
+            <div class="col-md-2 text-end fw-bold">
+                @Html.DisplayNameFor(model => model.VideoUrl)
+            </div>
+            <div class="col-md-10">
+                <video controls>
+                    <source src="@Url.Action("ShowVideo", "Episode", new { id = Model.Id })" type="@Model.VideoContentType">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    }*@
+</div>
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
